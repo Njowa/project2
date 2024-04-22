@@ -1,0 +1,26 @@
+#include <iostream>
+#include <limits>
+
+using namespace std;
+
+int main() {
+    int number;
+
+    while (true) {
+        cout << "Enter an integer value between 5 and 10: ";
+        cin >> number;
+
+        if (cin.fail()) {
+            cin.clear();
+            cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+            cout << "Sorry, you entered an invalid number, please try again.\n";
+        } else if (number < 5 || number > 10) {
+            cout << "Please enter an integer value between 5 and 10.\n";
+        } else {
+            cout << "Your input value has been accepted.\n";
+            break;
+        }
+    }
+
+    return 0;
+}
