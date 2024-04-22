@@ -1,0 +1,77 @@
+#include <iostream>
+#include <cmath> // For pow function
+
+using namespace std;
+
+// Function to calculate the area of a triangle
+double Tarea(double base, double height) {
+    return 0.5 * base * height;
+}
+
+// Function to calculate the area of a rectangle
+double Rarea(double length, double width) {
+    return length * width;
+}
+
+// Function to calculate the area of a square
+double Sarea(double side) {
+    return pow(side, 2);
+}
+
+int main() {
+    char choice;
+
+    do {
+        // Display menu and prompt user to select a shape
+        cout << "Select a shape to calculate its area:" << endl;
+        cout << "1. Triangle" << endl;
+        cout << "2. Rectangle" << endl;
+        cout << "3. Square" << endl;
+        cout << "Enter your choice (1/2/3): ";
+        cin >> choice;
+
+        // Variables to store dimensions for shape calculation
+        double base, height, length, width, side, area;
+
+        // Perform calculation based on user's choice
+        switch (choice) {
+            case '1':
+                // Triangle calculation
+                cout << "Enter the base length of the triangle: ";
+                cin >> base;
+                cout << "Enter the height of the triangle: ";
+                cin >> height;
+                area = Tarea(base, height);
+                cout << "The area of the triangle is: " << area << endl;
+                break;
+            case '2':
+                // Rectangle calculation
+                cout << "Enter the length of the rectangle: ";
+                cin >> length;
+                cout << "Enter the width of the rectangle: ";
+                cin >> width;
+                area = Rarea(length, width);
+                cout << "The area of the rectangle is: " << area << endl;
+                break;
+            case '3':
+                // Square calculation
+                cout << "Enter the side length of the square: ";
+                cin >> side;
+                area = Sarea(side);
+                cout << "The area of the square is: " << area << endl;
+                break;
+            default:
+                // Invalid input
+                cout << "Invalid input. Please enter 1, 2, or 3." << endl;
+        }
+
+        // Prompt the user if they want to continue
+        cout << "Do you want to calculate the area of another shape? (Y/N): ";
+        cin >> choice;
+
+    } while (choice == 'Y' || choice == 'y');
+
+    cout << "Thank you for using the program. Goodbye!" << endl;
+
+    return 0;
+}
