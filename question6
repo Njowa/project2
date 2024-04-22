@@ -1,0 +1,89 @@
+#include <iostream>
+#include <fstream>
+#include <string>
+#include <algorithm>
+
+// Function to count vowels in a string
+int countVowels(const std::string& str) {
+    int count = 0;
+    for (char ch : str) {
+        if (ch == 'a' || ch == 'e' || ch == 'i' || ch == 'o' || ch == 'u' ||
+            ch == 'A' || ch == 'E' || ch == 'I' || ch == 'O' || ch == 'U') {
+            count++;
+        }
+    }
+    return count;
+}
+
+// Function to count words in a string
+int countWords(const std::string& str) {
+    int count = 0;
+    bool inWord = false;
+    for (char ch : str) {
+        if (std::isalpha(ch)) {
+            if (!inWord) {
+                count++;
+                inWord = true;
+            }
+        } else {
+            inWord = false;
+        }
+    }
+    return count;
+}
+
+// Function to reverse a string
+std::string reverse(const std::string& str) {
+    return std::string(str.rbegin(), str.rend());
+}
+
+// Function to capitalize the second letter of each word
+std::string capitalizeSecondLetter(const std::string& str) {
+    std::string result = str;
+    bool capitalize = false;
+    for (char& ch : result) {
+        if (std::isalpha(ch)) {
+            if (capitalize) {
+                ch = std::toupper(ch);
+                capitalize = false;
+            } else {
+                capitalize = true;
+            }
+        } else {
+            capitalize = false;
+        }
+    }
+    return result;
+}
+
+int main() {
+    std::ifstream file("input.txt"); // Assuming the file name is input.txt
+    std::string fileData;
+
+    if (file.is_open()) {
+        std::getline(file, fileData);
+
+        // Count vowels
+        int numVowels = countVowels(fileData);
+        std::cout << "Number of vowels: " << numVowels << std::endl;
+
+        // Count words
+        int numWords = countWords(fileData);
+        std::cout << "Number of words: " << numWords << std::endl;
+
+        // Reverse statement
+        std::string reversed = reverse(fileData);
+        std::cout << "Reversed statement: " << reversed << std::endl;
+
+        // Capitalize second letter of each word
+        std::string capitalized = capitalizeSecondLetter(fileData);
+        std::cout << "Statement with second letter capitalized: " << capitalized << std::endl;
+
+        file.close();
+    } else {
+        std::cerr << "Unable to open file" << std::endl;
+        return 1;
+    }
+
+    return 0;
+}
